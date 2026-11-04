@@ -80,10 +80,15 @@ night-city-dispatch/
 ├── assets/css/             main.css, editor.css
 ├── assets/js/              main.js
 ├── assets/fonts/           Chakra Petch + IBM Plex (latin subset)
-├── docs/                   Design notes and interview preparation
 ├── readme.txt              WordPress theme readme
 └── screenshot.png          Theme preview
 ```
+
+## Over dit project
+
+Schoolproject voor de module **WordPress Custom 1** (ROC Nijmegen, 2026), gemaakt door Yiming Cao.
+
+Ik heb AI gebruikt voor uitleg, het uitzoeken van de templatehiërarchie en het schrijven van codevoorbeelden. Alle code in dit thema is door mij gelezen, aangepast en kan tijdens het interview worden uitgelegd en gewijzigd.
 
 ## Credits
 
