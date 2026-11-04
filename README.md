@@ -2,6 +2,8 @@
 
 A classic WordPress theme built for an in-world fan magazine about Night City. Hazard yellow on ink, condensed display type, mono data labels and an off-white paper reading surface: the design language of a municipal terminal rather than a generic blog.
 
+![Night City Dispatch front page](screenshot.png)
+
 Built for the **WordPress Custom 1** module: a hand-built theme that follows the WordPress template hierarchy, pulls all content dynamically through the Loop, and ships reusable header/footer parts plus a `functions.php`.
 
 ## What is included
