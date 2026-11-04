@@ -531,7 +531,7 @@ button {
    -------------------------------------------------------------------------- */
 
 .hero {
-	padding: 52px 0 60px;
+	padding: 44px 0 56px;
 	border-bottom: 1px solid var(--line-soft);
 }
 
@@ -557,6 +557,7 @@ button {
 .hero__media {
 	display: block;
 	aspect-ratio: 16 / 9;
+	max-height: 400px;
 	overflow: hidden;
 	background: var(--ink-3);
 }
@@ -658,6 +659,42 @@ button {
 	font-size: 9.5px;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
+	color: var(--muted);
+}
+
+.side-title--gap {
+	margin-top: 28px;
+}
+
+.section-list {
+	list-style: none;
+	margin: 0;
+}
+
+.section-list__item {
+	border-bottom: 1px solid var(--line);
+}
+
+.section-list__item a {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 11px 0;
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 1.2;
+}
+
+.section-list__item a:hover {
+	color: var(--hazard);
+}
+
+.section-list__count {
+	font-family: var(--font-mono);
+	font-size: 9.5px;
+	font-weight: 400;
 	color: var(--muted);
 }
 
@@ -1325,11 +1362,13 @@ button {
 
 .post-nav__link {
 	display: block;
+	grid-column: 1;
 	padding-top: 18px;
 	max-width: 46ch;
 }
 
 .post-nav__link--next {
+	grid-column: 2;
 	text-align: right;
 	justify-self: end;
 }
@@ -1439,6 +1478,19 @@ button {
 	margin-bottom: 24px;
 }
 
+.comment-reply-title {
+	font-size: 20px;
+	margin: 0 0 6px;
+}
+
+.comment-notes {
+	max-width: 60ch;
+	font-size: 12.5px;
+	line-height: 1.6;
+	color: var(--muted);
+	margin-bottom: 20px;
+}
+
 .comment-list {
 	list-style: none;
 	margin: 0 0 32px;
@@ -1508,6 +1560,26 @@ button {
 .comment-form .comment-form-cookies-consent,
 .comment-form .form-submit {
 	grid-column: 1 / -1;
+}
+
+.comment-form .comment-form-cookies-consent {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.comment-form .comment-form-cookies-consent input {
+	margin-top: 3px;
+	accent-color: var(--hazard);
+}
+
+.comment-form .comment-form-cookies-consent label {
+	margin: 0;
+	font-family: var(--font-mono);
+	font-size: 9.5px;
+	line-height: 1.5;
+	letter-spacing: 0.06em;
+	color: var(--muted);
 }
 
 .comment-form label {

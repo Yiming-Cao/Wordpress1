@@ -23,6 +23,15 @@ if ( $ncd_lead_query->have_posts() ) {
 	$ncd_lead = $ncd_lead_query->posts[0];
 	$ncd_side = array_slice( $ncd_lead_query->posts, 1, 3 );
 }
+
+$ncd_sections = get_categories(
+	array(
+		'hide_empty' => true,
+		'orderby'    => 'count',
+		'order'      => 'DESC',
+		'number'     => 4,
+	)
+);
 ?>
 
 <?php if ( $ncd_lead ) : ?>
@@ -68,6 +77,20 @@ if ( $ncd_lead_query->have_posts() ) {
 						</li>
 					<?php endforeach; ?>
 				</ol>
+
+				<?php if ( $ncd_sections ) : ?>
+					<h2 class="side-title side-title--gap"><?php esc_html_e( 'Sections', 'night-city-dispatch' ); ?></h2>
+					<ul class="section-list">
+						<?php foreach ( $ncd_sections as $ncd_section ) : ?>
+							<li class="section-list__item">
+								<a href="<?php echo esc_url( get_category_link( $ncd_section->term_id ) ); ?>">
+									<span><?php echo esc_html( $ncd_section->name ); ?></span>
+									<span class="section-list__count"><?php echo esc_html( number_format_i18n( $ncd_section->count ) ); ?></span>
+								</a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
 			</aside>
 		</div>
 	</section>
@@ -106,18 +129,7 @@ $ncd_latest = new WP_Query(
 	</section>
 <?php endif; ?>
 
-<?php
-$ncd_districts = get_categories(
-	array(
-		'hide_empty' => true,
-		'orderby'    => 'count',
-		'order'      => 'DESC',
-		'number'     => 4,
-	)
-);
-?>
-
-<?php if ( $ncd_districts ) : ?>
+<?php if ( $ncd_sections ) : ?>
 	<section class="section section--districts">
 		<div class="container">
 			<div class="section__head">
@@ -126,7 +138,7 @@ $ncd_districts = get_categories(
 			</div>
 
 			<div class="district-grid">
-				<?php foreach ( $ncd_districts as $ncd_district ) : ?>
+				<?php foreach ( $ncd_sections as $ncd_district ) : ?>
 					<a class="district" href="<?php echo esc_url( get_category_link( $ncd_district->term_id ) ); ?>">
 						<span class="district__count"><?php echo esc_html( sprintf( _n( '%s file', '%s files', (int) $ncd_district->count, 'night-city-dispatch' ), number_format_i18n( $ncd_district->count ) ) ); ?></span>
 						<span class="district__name"><?php echo esc_html( $ncd_district->name ); ?></span>
