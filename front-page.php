@@ -78,19 +78,15 @@ $ncd_sections = get_categories(
 					<?php endforeach; ?>
 				</ol>
 
-				<?php if ( $ncd_sections ) : ?>
-					<h2 class="side-title side-title--gap"><?php esc_html_e( 'Sections', 'night-city-dispatch' ); ?></h2>
-					<ul class="section-list">
-						<?php foreach ( $ncd_sections as $ncd_section ) : ?>
-							<li class="section-list__item">
-								<a href="<?php echo esc_url( get_category_link( $ncd_section->term_id ) ); ?>">
-									<span><?php echo esc_html( $ncd_section->name ); ?></span>
-									<span class="section-list__count"><?php echo esc_html( number_format_i18n( $ncd_section->count ) ); ?></span>
-								</a>
-							</li>
-						<?php endforeach; ?>
-					</ul>
-				<?php endif; ?>
+				<?php
+				$ncd_contact     = get_page_by_path( 'contact' );
+				$ncd_contact_url = $ncd_contact ? get_permalink( $ncd_contact ) : home_url( '/?s=contact' );
+				?>
+				<div class="side-callout">
+					<p class="side-callout__label"><?php esc_html_e( 'Tip line', 'night-city-dispatch' ); ?></p>
+					<p class="side-callout__text"><?php esc_html_e( 'Got a lead, a screenshot or a part number? The desk reads everything.', 'night-city-dispatch' ); ?></p>
+					<a class="text-link" href="<?php echo esc_url( $ncd_contact_url ); ?>"><?php esc_html_e( 'Contact the desk', 'night-city-dispatch' ); ?></a>
+				</div>
 			</aside>
 		</div>
 	</section>
@@ -133,8 +129,8 @@ $ncd_latest = new WP_Query(
 	<section class="section section--districts">
 		<div class="container">
 			<div class="section__head">
-				<h2 class="section__title"><?php esc_html_e( 'Districts', 'night-city-dispatch' ); ?></h2>
-				<span class="section__note"><?php esc_html_e( 'Browse the city by section', 'night-city-dispatch' ); ?></span>
+				<h2 class="section__title"><?php esc_html_e( 'Sections', 'night-city-dispatch' ); ?></h2>
+				<span class="section__note"><?php esc_html_e( 'Four desks, one city', 'night-city-dispatch' ); ?></span>
 			</div>
 
 			<div class="district-grid">
