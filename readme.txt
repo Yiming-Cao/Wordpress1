@@ -14,7 +14,7 @@ A dark editorial theme for an in-world Night City fan magazine.
 Night City Dispatch is a classic WordPress theme built around the template
 hierarchy. It ships with a front page, single post, static page, category, tag,
 author, search and 404 templates, a reusable header and footer, and a
-functions.php that registers menus, image sizes, widget-ready excerpts and the
+functions.php that registers menus, image sizes, excerpt length and the
 archive filter bar.
 
 The visual language uses hazard yellow on ink, condensed display type, mono data
