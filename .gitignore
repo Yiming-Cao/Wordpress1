@@ -1,0 +1,14 @@
+# Local WordPress install used to build the theme
+/wp/
+/tools/
+/design/
+/node_modules/
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Packaged theme
+*.zip

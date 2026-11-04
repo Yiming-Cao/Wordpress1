@@ -1,0 +1,36 @@
+/*
+ * Editor styles: keep the block editor close to the paper surface used on the
+ * front end, without loading the full site stylesheet.
+ */
+
+body {
+	font-family: "IBM Plex Sans", system-ui, sans-serif;
+	font-size: 17px;
+	line-height: 1.75;
+	color: #131313;
+	background: #e9e6da;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: "Chakra Petch", sans-serif;
+	font-weight: 700;
+	line-height: 1.15;
+}
+
+blockquote {
+	border-left: 4px solid #131313;
+	padding-left: 24px;
+	font-family: "Chakra Petch", sans-serif;
+	font-size: 20px;
+}
+
+a {
+	color: #131313;
+}
+
+.wp-block {
+	max-width: 760px;
+}

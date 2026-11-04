@@ -1,0 +1,20 @@
+/*
+Theme Name: Night City Dispatch
+Theme URI: https://github.com/Yiming-Cao/night-city-dispatch
+Author: Yiming Cao
+Author URI: https://github.com/Yiming-Cao
+Description: A dark editorial theme for an in-world Night City fan magazine. Built around the WordPress template hierarchy: front page, single post, page, archives (category, tag, author), search and 404.
+Version: 1.0.0
+Requires at least: 6.5
+Tested up to: 6.8
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: night-city-dispatch
+Tags: dark, one-column, two-columns, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+*/
+
+/*
+ * The working stylesheet lives in assets/css/main.css and is enqueued from
+ * functions.php. This file only carries the theme header required by WordPress.
+ */
