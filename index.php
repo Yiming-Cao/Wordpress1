@@ -21,6 +21,7 @@ get_header();
 				<?php
 				while ( have_posts() ) :
 					the_post();
+					// Elk bericht wordt met dezelfde kaart getekend.
 					get_template_part( 'template-parts/content-card' );
 				endwhile;
 				?>

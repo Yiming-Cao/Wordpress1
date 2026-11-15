@@ -18,6 +18,7 @@
 			<h2 class="footer__title"><?php esc_html_e( 'Categorieen', 'night-city-dispatch' ); ?></h2>
 			<ul class="footer__list">
 				<?php
+				// Vijf categorieen met het aantal berichten erachter.
 				wp_list_categories(
 					array(
 						'title_li'   => '',
@@ -56,6 +57,9 @@
 	</div>
 </footer>
 
-<?php wp_footer(); ?>
+<?php
+// Hieronder laden plugins hun eigen scripts en CSS.
+wp_footer();
+?>
 </body>
 </html>

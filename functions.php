@@ -29,6 +29,7 @@ function ncd_setup() {
 		array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' )
 	);
 
+	// Twee plekken waar een menu kan staan: het hoofdmenu en de footer.
 	register_nav_menus(
 		array(
 			'primary' => __( 'Hoofdmenu', 'night-city-dispatch' ),
@@ -36,6 +37,7 @@ function ncd_setup() {
 		)
 	);
 
+	// Twee formaten: een brede voor de hero en een kleinere voor de kaarten.
 	add_image_size( 'ncd-card', 720, 450, true );
 	add_image_size( 'ncd-hero', 1200, 675, true );
 }
@@ -45,6 +47,7 @@ add_action( 'after_setup_theme', 'ncd_setup' );
  * De stylesheet en het script laden.
  */
 function ncd_assets() {
+	// De versie uit style.css zorgt dat de browser na een update een nieuwe file ophaalt.
 	$version = wp_get_theme()->get( 'Version' );
 	$uri     = get_template_directory_uri();
 
@@ -78,10 +81,12 @@ function ncd_menu_fallback() {
  * @param WP_Query $query De query die WordPress gaat uitvoeren.
  */
 function ncd_archive_query( $query ) {
+	// Alleen de hoofdquery aanpassen. Queries in het dashboard laten we met rust.
 	if ( is_admin() || ! $query->is_main_query() ) {
 		return;
 	}
 
+	// Op overzichten en zoekresultaten passen er zes berichten per pagina.
 	if ( $query->is_archive() || $query->is_search() ) {
 		$query->set( 'posts_per_page', 6 );
 	}
@@ -94,6 +99,7 @@ add_action( 'pre_get_posts', 'ncd_archive_query' );
  * @return int
  */
 function ncd_excerpt_length() {
+	// Ongeveer drie regels tekst, zodat de kaarten even hoog blijven.
 	return 24;
 }
 add_filter( 'excerpt_length', 'ncd_excerpt_length' );

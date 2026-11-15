@@ -7,6 +7,7 @@
 
 get_header();
 
+// De Loop: the_post() zet het bericht klaar, daarna werken the_title() en the_content().
 while ( have_posts() ) :
 	the_post();
 
@@ -74,6 +75,7 @@ while ( have_posts() ) :
 				</nav>
 			<?php endif; ?>
 
+			<?php // Reacties van bezoekers, met het formulier van WordPress. ?>
 			<?php comments_template(); ?>
 		</div>
 	</article>

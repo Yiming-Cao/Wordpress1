@@ -16,6 +16,7 @@ while ( have_posts() ) :
 				<h1 class="entry__title"><?php the_title(); ?></h1>
 			</header>
 
+			<?php // Niet elke pagina heeft een afbeelding, dus eerst controleren. ?>
 			<?php if ( has_post_thumbnail() ) : ?>
 				<figure class="entry__image">
 					<?php the_post_thumbnail( 'ncd-hero' ); ?>
@@ -26,6 +27,7 @@ while ( have_posts() ) :
 				<?php the_content(); ?>
 
 				<?php
+				// Bestaat de pagina uit meerdere delen? Dan komen hier de paginanummers.
 				wp_link_pages(
 					array(
 						'before' => '<nav class="page-links">' . esc_html__( 'Pagina:', 'night-city-dispatch' ),

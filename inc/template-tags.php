@@ -20,6 +20,7 @@ function ncd_post_meta( $post_id = 0 ) {
 
 	echo '<div class="meta">';
 
+	// De datum in een time-element: dat is goed voor schermlezers en zoekmachines.
 	printf(
 		'<time class="meta__item" datetime="%1$s">%2$s</time>',
 		esc_attr( get_the_date( DATE_W3C, $post_id ) ),
@@ -97,6 +98,7 @@ function ncd_archive_label() {
  * Paginanummers onder een overzicht.
  */
 function ncd_pagination() {
+	// Eén paginanummer links en rechts van de huidige pagina is genoeg.
 	the_posts_pagination(
 		array(
 			'mid_size'  => 1,
@@ -114,6 +116,7 @@ function ncd_pagination() {
  * @param bool   $active Staat deze link al open?
  */
 function ncd_filter_link( $label, $url, $active = false ) {
+	// %1$s is de extra class, %2$s de URL, %3$s aria-current en %4$s de tekst.
 	printf(
 		'<a class="filter-link%1$s" href="%2$s"%3$s>%4$s</a>',
 		$active ? ' is-active' : '',
@@ -130,6 +133,7 @@ function ncd_filter_link( $label, $url, $active = false ) {
  * JavaScript en elke filter heeft een eigen URL.
  */
 function ncd_archive_filters() {
+	// Eerst de categorieen, daarna de tags en de auteurs ophalen.
 	$categories = get_categories(
 		array(
 			'hide_empty' => true,

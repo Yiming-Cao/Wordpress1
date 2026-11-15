@@ -17,6 +17,7 @@
 	toggle.addEventListener('click', function () {
 		var isOpen = toggle.getAttribute('aria-expanded') === 'true';
 
+		// aria-expanded vertelt aan een schermlezer of het menu open of dicht is.
 		toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
 		nav.classList.toggle('is-open', !isOpen);
 	});

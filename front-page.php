@@ -12,7 +12,7 @@ $ncd_query = new WP_Query(
 		'post_type'           => 'post',
 		'posts_per_page'      => 7,
 		'ignore_sticky_posts' => true,
-		'no_found_rows'       => true,
+		'no_found_rows'       => true, // Geen paginering nodig op de voorpagina, dus dit is sneller.
 	)
 );
 
@@ -64,6 +64,7 @@ if ( $ncd_query->have_posts() ) :
 					$ncd_query->the_post();
 					get_template_part( 'template-parts/content-card' );
 				endwhile;
+				// Zet de standaard post terug, anders werkt de Loop hierna niet meer.
 				wp_reset_postdata();
 				?>
 			</div>

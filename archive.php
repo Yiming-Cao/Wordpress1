@@ -7,6 +7,7 @@
 
 get_header();
 
+// Het totaal aantal berichten in dit archief, voor de regel bovenaan.
 $ncd_found = (int) $GLOBALS['wp_query']->found_posts;
 ?>
 

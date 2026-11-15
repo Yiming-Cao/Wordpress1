@@ -10,7 +10,10 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<?php wp_head(); ?>
+	<?php
+	// wp_head() zet alle tags in de head neer: de titel, de stylesheet en plugins.
+	wp_head();
+	?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -31,6 +34,7 @@
 
 		<nav id="primary-nav" class="primary-nav" aria-label="<?php esc_attr_e( 'Hoofdmenu', 'night-city-dispatch' ); ?>">
 			<?php
+			// Het menu uit het dashboard. Zonder menu valt hij terug op de pagina's.
 			wp_nav_menu(
 				array(
 					'theme_location' => 'primary',

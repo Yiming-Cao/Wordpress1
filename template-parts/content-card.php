@@ -5,6 +5,7 @@
  * @package NightCityDispatch
  */
 
+// De eerste categorie gebruiken we als klein label boven de titel.
 $ncd_card_categories = get_the_category();
 ?>
 <article <?php post_class( 'card' ); ?>>
