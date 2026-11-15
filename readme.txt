@@ -1,57 +1,68 @@
 === Night City Dispatch ===
-Contributors: Yiming Cao
-Requires at least: 6.5
+Contributors: yimingcao
+Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 7.4
-Version: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Tags: one-column, two-columns, custom-menu, featured-images, threaded-comments, translation-ready
 
-A dark editorial theme for an in-world Night City fan magazine.
+Een simpel klassiek WordPress thema voor een fanmagazine over Night City.
 
 == Description ==
 
-Night City Dispatch is a classic WordPress theme built around the template
-hierarchy. It ships with a front page, single post, static page, category, tag,
-author, search and 404 templates, a reusable header and footer, and a
-functions.php that registers menus, image sizes, excerpt length and the
-archive filter bar.
+Night City Dispatch is een klassiek thema met een vaste header, een voorpagina met een uitgelicht bericht, een raster met kaarten en een footer met drie kolommen. Alles is wit met een grijze rand en een blauwe accentkleur. Er worden geen webfonts of externe bestanden geladen.
 
-The visual language uses hazard yellow on ink, condensed display type, mono data
-labels and clipped panel corners. Content is read on an off-white "paper"
-surface so long articles stay comfortable.
+Het thema gebruikt de templatehiërarchie en heeft deze templates:
+
+* `index.php` (verplichte fallback)
+* `front-page.php` (voorpagina)
+* `home.php` (blogoverzicht)
+* `single.php` (enkel bericht)
+* `page.php` (pagina)
+* `archive.php` (categorie, tag en datum)
+* `author.php` (auteurspagina)
+* `search.php` (zoekresultaten)
+* `404.php` (niet gevonden)
+
+Verder zitten er `header.php`, `footer.php`, `comments.php`, `searchform.php`, `inc/template-tags.php` en de map `template-parts/` in.
+
+Functies:
+
+* twee menu's (hoofdmenu en footer)
+* uitgelichte afbeeldingen met twee image sizes
+* filteren op categorie, tag en auteur via gewone links naar de archieven
+* paginering op de overzichten
+* reageren op berichten en pagina's
 
 == Installation ==
 
-1. In the dashboard go to Appearance > Themes > Add New > Upload Theme.
-2. Upload night-city-dispatch.zip and activate.
-3. Create a menu under Appearance > Menus and assign it to "Primary menu".
-4. Optional: upload a logo under Appearance > Customize > Site Identity.
+1. Upload de map `night-city-dispatch` naar `/wp-content/themes/` of upload de zip via Weergave > Thema's > Nieuwe toevoegen.
+2. Activeer het thema onder Weergave > Thema's.
+3. Ga naar Weergave > Menu's en maak een menu aan voor de locatie Hoofdmenu.
+4. Zet de permalinks op "Berichtnaam" onder Instellingen > Permalinks.
 
-== Template files ==
+== Frequently Asked Questions ==
 
-style.css          Theme header and metadata.
-functions.php      Theme supports, menus, assets, queries, helpers include.
-index.php          Required fallback template.
-front-page.php     Front page: lead story, latest files, districts, desk note.
-home.php           Blog index when a static front page is used.
-single.php         Single post with file data, author box, related files.
-page.php           Static page.
-archive.php        Category, tag and date archives with the filter bar.
-author.php         Writer archive with profile block.
-search.php         Search results.
-404.php            Not found page with search and recent files.
-header.php         Document head, masthead, navigation, ticker.
-footer.php         Footer columns and legal line.
-comments.php       Comment list and form.
-searchform.php     Reusable search form.
-inc/template-tags.php  Reading time, meta, filters, related posts, pagination.
-template-parts/    Card, empty state and filter bar partials.
-assets/            CSS, JS and bundled webfonts.
+= Waarom is er geen category.php of tag.php? =
+
+Die vallen terug op `archive.php`. Dat is de standaard templatehiërarchie van WordPress, dus dubbele bestanden zijn niet nodig.
+
+= Werkt filteren zonder JavaScript? =
+
+Ja. De knoppen in de filterbalk zijn gewone links naar de archiefpagina's.
+
+== Changelog ==
+
+= 1.1.0 =
+* Thema vereenvoudigd: eigen kleuren en opmaak eruit, systeemletters, een blauwe accentkleur en witte kaarten.
+* Webletters en losse CSS voor de editor verwijderd.
+* Filterbalk met categorieen, tags en auteurs toegevoegd.
+
+= 1.0.0 =
+* Eerste versie van het thema.
 
 == Credits ==
 
-Fonts: Chakra Petch and IBM Plex (SIL Open Font License), bundled locally.
-Imagery: generated for this project.
-Night City and Cyberpunk 2077 are trademarks of CD Projekt Red. This is a
-non-commercial student fan project.
+* Cyberpunk 2077 en Night City zijn handelsmerken van CD Projekt Red. Dit thema is een niet-commercieel schoolproject en is niet verbonden aan CD Projekt Red.

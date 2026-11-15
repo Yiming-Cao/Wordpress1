@@ -1,101 +1,101 @@
 # Night City Dispatch
 
-A classic WordPress theme built for an in-world fan magazine about Night City. Hazard yellow on ink, condensed display type, mono data labels and an off-white paper reading surface: the design language of a municipal terminal rather than a generic blog.
+Een simpel klassiek WordPress thema voor een fanmagazine over Night City. Witte kaarten met een grijze rand, één blauwe accentkleur en gewone systeemletters. Geen webfonts, geen effecten, geen page builder.
 
-![Night City Dispatch front page](screenshot.png)
+![Night City Dispatch](screenshot.png)
 
-Built for the **WordPress Custom 1** module: a hand-built theme that follows the WordPress template hierarchy, pulls all content dynamically through the Loop, and ships reusable header/footer parts plus a `functions.php`.
+Gemaakt voor de module **WordPress Custom 1**. Het thema gebruikt de templatehiërarchie van WordPress, haalt alle inhoud dynamisch op met de Loop en heeft een herbruikbare header, footer en een `functions.php`.
 
-## What is included
+## Wat zit erin
 
-| Requirement | Implementation |
+| Onderdeel | Bestand |
 | --- | --- |
-| Front page | `front-page.php` — lead story, latest six files, section index, desk note |
-| Single post | `single.php` — featured image, file metadata, author box, tags, related files, comments |
-| Static page | `page.php` |
-| 404 | `404.php` — search form plus recent files |
-| Filtering / archives | `archive.php`, `author.php`, `search.php` and a filter bar with category, tag and author links |
-| Reusable header & footer | `header.php`, `footer.php` |
-| `functions.php` | theme supports, menus, image sizes, assets, archive query, template helpers |
+| Voorpagina | `front-page.php` — uitgelicht bericht, nieuwste berichten, categorieen |
+| Enkel bericht | `single.php` — afbeelding, meta, inhoud, tags, vorige/volgende, reacties |
+| Pagina | `page.php` |
+| 404 | `404.php` — zoekformulier en link terug |
+| Filteren en archieven | `archive.php`, `author.php`, `search.php` en een filterbalk met categorieen, tags en auteurs |
+| Header en footer | `header.php`, `footer.php` |
+| `functions.php` | theme supports, menu's, image sizes, CSS en JS laden, archiefquery |
 
-Extra templates: `home.php` (blog index), `category.php` / `tag.php` are handled by `archive.php`, `searchform.php`, `comments.php`, `template-parts/`.
+Extra bestanden: `home.php` (blogoverzicht), `searchform.php`, `comments.php` en de map `template-parts/` met de kaart, de filterbalk en de lege staat.
 
-## Template hierarchy in this theme
+## Templatehiërarchie
 
-| URL | Template used |
+| URL | Template |
 | --- | --- |
 | `/` | `front-page.php` |
-| `/index/` (posts page) | `home.php` |
-| `/relic-job/` | `single.php` |
-| `/about/` | `page.php` |
-| `/category/districts/` | `archive.php` |
+| `/blog/` (berichtenpagina) | `home.php` |
+| `/de-metro-rijdt-weer/` | `single.php` |
+| `/over-ons/` | `page.php` |
+| `/category/nieuws/` | `archive.php` |
 | `/tag/watson/` | `archive.php` |
-| `/author/judy/` | `author.php` |
-| `/?s=relic` | `search.php` |
-| anything missing | `404.php` |
-| fallback | `index.php` |
+| `/author/yiming/` | `author.php` |
+| `/?s=metro` | `search.php` |
+| pagina die niet bestaat | `404.php` |
+| alles wat niet matcht | `index.php` |
 
-## Install
+`category.php` en `tag.php` heb ik niet gemaakt. Die vallen terug op `archive.php`, dat is hoe de hiërarchie werkt en dat scheelt dubbele code.
 
-1. Download `night-city-dispatch.zip`.
-2. WordPress dashboard → Appearance → Themes → Add New → Upload Theme → activate.
-3. Appearance → Menus: create a menu and assign it to **Primary menu**.
-4. Settings → Reading: the theme works with either "latest posts" or a static front page. This demo uses a static front page (`/`) plus a posts page (`/index/`).
-5. Optional: Appearance → Customize → Site Identity for a logo.
+## Installeren
 
-Demo content is not bundled with the theme (it lives in the local WordPress install used to build it), so a fresh install starts with the theme's empty states and the filter bar built from whatever content exists.
+1. Pak `night-city-dispatch.zip` uit of upload hem via **Weergave → Thema's → Nieuwe toevoegen**.
+2. Activeer het thema.
+3. **Weergave → Menu's**: maak een menu en zet het op **Hoofdmenu**. Zonder menu toont het thema automatisch de pagina's.
+4. **Instellingen → Permalinks** op "Berichtnaam" zetten, dan werken de archieven en de filterlinks.
+5. Optioneel: een footer menu aanmaken voor de derde kolom in de footer.
 
-## How it works
+Er zit geen demo-inhoud in het thema. Op een lege installatie zie je de lege staten en de filterbalk met alleen wat er bestaat.
 
-- **The Loop** — every listing (`front-page.php`, `home.php`, `archive.php`, `author.php`, `search.php`) runs `while ( have_posts() ) : the_post();` and offloads the card markup to `template-parts/content-card.php`.
-- **Custom queries** — `WP_Query` is used for the lead story, the "latest" grid, related posts and the 404 list. `wp_reset_postdata()` is called after each secondary loop.
-- **Dynamic content** — `the_title()`, `the_content()`, `the_permalink()`, `the_post_thumbnail()`, `get_the_category()`, `get_the_tags()`, `get_the_date()`, `get_the_author_meta()`, `get_avatar()`, `the_archive_description()`, `paginate_links()` via `the_posts_pagination()`.
-- **Filtering** — the chips in `inc/template-tags.php` link to real category, tag and author archives. Filtering therefore works without JavaScript, every state has a shareable URL, and the active chip is marked with `aria-current="page"`.
-- **functions.php** — registers `title-tag`, post thumbnails, custom logo, HTML5 markup, two menus and three image sizes; enqueues bundled fonts, the stylesheet and a small progressive-enhancement script; sets six posts per page on archives; adds reading time, word count, meta, related posts, pagination and the filter bar helpers.
-- **Reusable parts** — `header.php` (utility strip, masthead, navigation, live ticker), `footer.php` (sections, tags, index, legal line) and `template-parts/`.
-- **Accessibility** — skip link, visible focus rings, `aria-expanded` on the menu button, `aria-current` on the active filter, alt text on thumbnails, 44 px minimum tap targets on controls, `prefers-reduced-motion` support.
-- **Performance** — two locally bundled webfont families (7 files), one stylesheet, one small script, no jQuery dependency, `loading="lazy"` on cards and `eager` on the lead image.
+## Hoe het werkt
 
-## Project structure
+- **De Loop** — `front-page.php`, `home.php`, `archive.php`, `author.php`, `search.php` en `index.php` gebruiken allemaal `while ( have_posts() ) : the_post();`. De kaart zelf staat in `template-parts/content-card.php`, zodat de opmaak maar op één plek staat.
+- **Eigen query** — op de voorpagina staat een `WP_Query` voor het uitgelichte bericht en de nieuwste berichten. Daarna roep ik `wp_reset_postdata()` aan, anders klopt de rest van de pagina niet meer.
+- **Dynamische inhoud** — `the_title()`, `the_content()`, `the_permalink()`, `the_post_thumbnail()`, `get_the_category()`, `get_the_tags()`, `get_the_date()`, `get_the_author()`, `the_archive_description()`.
+- **Filteren** — de knoppen in `inc/template-tags.php` zijn gewone links naar de categorie-, tag- en auteursarchieven. Het werkt dus zonder JavaScript, elke filter heeft een eigen URL en de actieve filter krijgt `aria-current="page"`.
+- **`functions.php`** — zet `title-tag` en post thumbnails aan, maakt twee menu's en twee image sizes, laadt `assets/css/main.css` en `assets/js/main.js` met `wp_enqueue_style()` en `wp_enqueue_script()`, zet zes berichten per pagina op archieven en regelt de excerpt-lengte.
+- **Herbruikbare delen** — `header.php` (doctype, head, site titel, menu, zoeken), `footer.php` (drie kolommen en een regel met copyright) en `template-parts/`.
+- **Toegankelijkheid** — skip link, zichtbare focus, `aria-expanded` op de menuknop, alt-tekst bij afbeeldingen, en op mobiel een knop om het menu open te klappen.
+- **Simpel gehouden** — één stylesheet voor alle opmaak, één klein script voor het menu op mobiel, geen jQuery en geen externe bestanden.
+
+## Bestandsstructuur
 
 ```
 night-city-dispatch/
-├── style.css               Theme header (WordPress requirement)
-├── functions.php           Theme setup, assets, queries, helpers include
-├── index.php               Required fallback
-├── front-page.php          Front page
-├── home.php                Posts page
-├── single.php              Single post
-├── page.php                Static page
-├── archive.php             Category / tag / date archives
-├── author.php              Writer archive
-├── search.php              Search results
-├── 404.php                 Not found
-├── header.php              Document head, masthead, nav, ticker
-├── footer.php              Footer columns and legal line
-├── comments.php            Comments list and form
-├── searchform.php          Reusable search form
-├── inc/template-tags.php   Reading time, meta, filters, related posts
-├── template-parts/         card, filters, empty state
-├── assets/css/             main.css, editor.css
-├── assets/js/              main.js
-├── assets/fonts/           Chakra Petch + IBM Plex (latin subset)
-├── readme.txt              WordPress theme readme
-└── screenshot.png          Theme preview
+├── style.css               theme header (verplicht voor WordPress)
+├── functions.php           theme setup, assets, query, helpers
+├── index.php               verplichte fallback
+├── front-page.php          voorpagina
+├── home.php                blogoverzicht
+├── single.php              enkel bericht
+├── page.php                pagina
+├── archive.php             categorie, tag en datum
+├── author.php              auteurspagina
+├── search.php              zoekresultaten
+├── 404.php                 niet gevonden
+├── header.php              head, site titel, menu
+├── footer.php              footer
+├── comments.php            reacties
+├── searchform.php          zoekformulier
+├── inc/template-tags.php   meta, archieftitel, paginering, filters
+├── template-parts/         content-card, filters, content-none
+├── assets/css/main.css     alle opmaak
+├── assets/js/main.js       menu op mobiel
+├── readme.txt              readme voor WordPress
+└── screenshot.png          preview van het thema
 ```
 
 ## Over dit project
 
 Schoolproject voor de module **WordPress Custom 1** (ROC Nijmegen, 2026), gemaakt door Yiming Cao.
 
-Ik heb AI gebruikt voor uitleg, het uitzoeken van de templatehiërarchie en het schrijven van codevoorbeelden. Alle code in dit thema is door mij gelezen, aangepast en kan tijdens het interview worden uitgelegd en gewijzigd.
+Ik heb AI gebruikt om dingen uit te zoeken, bijvoorbeeld hoe de templatehiërarchie werkt en hoe je een eigen query op de voorpagina zet. De code heb ik daarna zelf aangepast, vereenvoudigd en nagelopen, zodat ik alles tijdens het interview kan uitleggen en kan veranderen.
 
 ## Credits
 
-- Fonts: [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch) and [IBM Plex](https://www.ibm.com/plex/) — SIL Open Font License, self-hosted.
-- Featured images and the theme screenshot were generated for this project.
-- Cyberpunk 2077 and Night City are trademarks of CD Projekt Red. This is a non-commercial student fan project, not affiliated with or endorsed by CD Projekt Red.
+- Cyberpunk 2077 en Night City zijn handelsmerken van CD Projekt Red. Dit is een niet-commercieel schoolproject en heeft niets met CD Projekt Red te maken.
+- De afbeeldingen in de demo zijn zelf gemaakt voor dit project.
 
-## License
+## Licentie
 
-GPL-2.0-or-later, the same license as WordPress.
+GPL-2.0-or-later, dezelfde licentie als WordPress.
