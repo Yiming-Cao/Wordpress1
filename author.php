@@ -1,6 +1,6 @@
 <?php
 /**
- * Author archive: profile block plus the writer's files.
+ * Auteurspagina: profiel en de berichten van deze auteur.
  *
  * @package NightCityDispatch
  */
@@ -11,13 +11,13 @@ $ncd_author = get_queried_object();
 $ncd_count  = (int) count_user_posts( $ncd_author->ID, 'post' );
 ?>
 
-<header class="page-head page-head--author">
+<header class="page-head">
 	<div class="container author-head">
 		<div class="author-head__avatar">
-			<?php echo get_avatar( $ncd_author->ID, 120, '', $ncd_author->display_name ); ?>
+			<?php echo get_avatar( $ncd_author->ID, 96, '', $ncd_author->display_name ); ?>
 		</div>
 		<div>
-			<p class="page-head__meta"><?php echo esc_html( sprintf( '%s / %s', ncd_archive_label(), number_format_i18n( $ncd_count ) ) ); ?></p>
+			<p class="page-head__meta"><?php echo esc_html( sprintf( '%s / %s berichten', ncd_archive_label(), number_format_i18n( $ncd_count ) ) ); ?></p>
 			<h1 class="page-head__title"><?php echo esc_html( $ncd_author->display_name ); ?></h1>
 			<?php if ( $ncd_author->description ) : ?>
 				<p class="page-head__desc"><?php echo esc_html( $ncd_author->description ); ?></p>

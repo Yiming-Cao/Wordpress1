@@ -1,18 +1,20 @@
 <?php
 /**
- * Blog index, used when a static front page is configured.
+ * Blogoverzicht, gebruikt als er een statische voorpagina is ingesteld.
  *
  * @package NightCityDispatch
  */
 
 get_header();
+
+$ncd_found = (int) $GLOBALS['wp_query']->found_posts;
 ?>
 
 <header class="page-head">
 	<div class="container">
-		<p class="page-head__meta"><?php echo esc_html( sprintf( '%s / %s', ncd_archive_label(), number_format_i18n( (int) $GLOBALS['wp_query']->found_posts ) ) ); ?></p>
+		<p class="page-head__meta"><?php echo esc_html( sprintf( '%s / %s berichten', ncd_archive_label(), number_format_i18n( $ncd_found ) ) ); ?></p>
 		<h1 class="page-head__title"><?php single_post_title(); ?></h1>
-		<p class="page-head__desc"><?php esc_html_e( 'Everything the desk has filed so far, newest first.', 'night-city-dispatch' ); ?></p>
+		<p class="page-head__desc"><?php esc_html_e( 'Alle berichten op een rij, de nieuwste eerst.', 'night-city-dispatch' ); ?></p>
 	</div>
 </header>
 

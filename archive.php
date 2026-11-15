@@ -1,6 +1,6 @@
 <?php
 /**
- * Archive template for categories, tags and dates.
+ * Archief voor categorieen, tags en datums.
  *
  * @package NightCityDispatch
  */
@@ -12,9 +12,9 @@ $ncd_found = (int) $GLOBALS['wp_query']->found_posts;
 
 <header class="page-head">
 	<div class="container">
-		<p class="page-head__meta"><?php echo esc_html( sprintf( '%s / %s', ncd_archive_label(), number_format_i18n( $ncd_found ) ) ); ?></p>
+		<p class="page-head__meta"><?php echo esc_html( sprintf( '%s / %s berichten', ncd_archive_label(), number_format_i18n( $ncd_found ) ) ); ?></p>
 		<h1 class="page-head__title"><?php echo esc_html( ncd_archive_title() ); ?></h1>
-		<?php the_archive_description( '<div class="page-head__desc">', '</div>' ); ?>
+		<?php the_archive_description( '<p class="page-head__desc">', '</p>' ); ?>
 	</div>
 </header>
 

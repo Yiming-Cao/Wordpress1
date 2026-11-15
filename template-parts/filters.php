@@ -1,6 +1,6 @@
 <?php
 /**
- * Filter bar shared by the blog index, archives and author pages.
+ * Filterbalk die op het blogoverzicht, de archieven en de auteurspagina staat.
  *
  * @package NightCityDispatch
  */

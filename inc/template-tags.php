@@ -1,6 +1,6 @@
 <?php
 /**
- * Small template helpers shared by more than one template file.
+ * Kleine hulpfuncties die in meerdere templates gebruikt worden.
  *
  * @package NightCityDispatch
  */
@@ -10,56 +10,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Estimate reading time in minutes (200 words per minute, rounded up).
+ * Datum en auteur van een bericht tonen.
  *
- * @param int $post_id Optional post ID. Defaults to the current post.
- * @return int
- */
-function ncd_reading_time( $post_id = 0 ) {
-	$post_id = $post_id ? $post_id : get_the_ID();
-	$content = get_post_field( 'post_content', $post_id );
-	$words   = str_word_count( wp_strip_all_tags( strip_shortcodes( (string) $content ) ) );
-
-	return max( 1, (int) ceil( $words / 200 ) );
-}
-
-/**
- * Count the words in a post.
- *
- * @param int $post_id Optional post ID. Defaults to the current post.
- * @return int
- */
-function ncd_word_count( $post_id = 0 ) {
-	$post_id = $post_id ? $post_id : get_the_ID();
-	$content = get_post_field( 'post_content', $post_id );
-
-	return (int) str_word_count( wp_strip_all_tags( strip_shortcodes( (string) $content ) ) );
-}
-
-/**
- * Print the date, writer, category and reading time for a post.
- *
- * @param int $post_id Optional post ID. Defaults to the current post.
+ * @param int $post_id Optioneel. Standaard het huidige bericht.
  */
 function ncd_post_meta( $post_id = 0 ) {
-	$post_id    = $post_id ? $post_id : get_the_ID();
-	$categories = get_the_category( $post_id );
-	$author_id  = (int) get_post_field( 'post_author', $post_id );
+	$post_id   = $post_id ? $post_id : get_the_ID();
+	$author_id = (int) get_post_field( 'post_author', $post_id );
 
 	echo '<div class="meta">';
-
-	if ( $categories ) {
-		printf(
-			'<a class="meta__item meta__cat" href="%1$s">%2$s</a>',
-			esc_url( get_category_link( $categories[0]->term_id ) ),
-			esc_html( $categories[0]->name )
-		);
-	}
 
 	printf(
 		'<time class="meta__item" datetime="%1$s">%2$s</time>',
 		esc_attr( get_the_date( DATE_W3C, $post_id ) ),
-		esc_html( get_the_date( 'd.m.Y', $post_id ) )
+		esc_html( get_the_date( '', $post_id ) )
 	);
 
 	printf(
@@ -68,103 +32,11 @@ function ncd_post_meta( $post_id = 0 ) {
 		esc_html( get_the_author_meta( 'display_name', $author_id ) )
 	);
 
-	printf(
-		'<span class="meta__item">%s</span>',
-		esc_html( sprintf( '%d min read', ncd_reading_time( $post_id ) ) )
-	);
-
 	echo '</div>';
 }
 
 /**
- * Print the tags of the current post as links.
- */
-function ncd_entry_tags() {
-	$tags = get_the_tags();
-
-	if ( ! $tags ) {
-		return;
-	}
-
-	echo '<div class="tag-list">';
-	foreach ( $tags as $tag ) {
-		printf(
-			'<a class="chip" href="%1$s" rel="tag">%2$s</a>',
-			esc_url( get_tag_link( $tag->term_id ) ),
-			esc_html( $tag->name )
-		);
-	}
-	echo '</div>';
-}
-
-/**
- * Print a paginated list for the current query.
- */
-function ncd_pagination() {
-	the_posts_pagination(
-		array(
-			'mid_size'           => 1,
-			'prev_text'          => __( 'Previous page', 'night-city-dispatch' ),
-			'next_text'          => __( 'Next page', 'night-city-dispatch' ),
-			'class'              => 'pagination',
-			'screen_reader_text' => __( 'Posts navigation', 'night-city-dispatch' ),
-		)
-	);
-}
-
-/**
- * Return posts related by category, for use after a single post.
- *
- * @param int $post_id Optional post ID. Defaults to the current post.
- * @param int $limit   Number of posts to request.
- * @return WP_Query
- */
-function ncd_related_posts( $post_id = 0, $limit = 3 ) {
-	$post_id    = $post_id ? $post_id : get_the_ID();
-	$categories = wp_get_post_categories( $post_id );
-
-	$args = array(
-		'post_type'           => 'post',
-		'posts_per_page'      => $limit,
-		'post__not_in'        => array( $post_id ),
-		'ignore_sticky_posts' => true,
-		'no_found_rows'       => true,
-	);
-
-	if ( $categories ) {
-		$args['category__in'] = $categories;
-	}
-
-	return new WP_Query( $args );
-}
-
-/**
- * A human label for the archive currently being viewed.
- *
- * @return string
- */
-function ncd_archive_label() {
-	if ( is_category() ) {
-		return __( 'Section', 'night-city-dispatch' );
-	}
-	if ( is_tag() ) {
-		return __( 'Tag', 'night-city-dispatch' );
-	}
-	if ( is_author() ) {
-		return __( 'Writer', 'night-city-dispatch' );
-	}
-	if ( is_search() ) {
-		return __( 'Search', 'night-city-dispatch' );
-	}
-	if ( is_date() ) {
-		return __( 'Date', 'night-city-dispatch' );
-	}
-
-	return __( 'Archive', 'night-city-dispatch' );
-}
-
-/**
- * The archive title without WordPress' "Category:" prefixes.
+ * Titel van het huidige archief, zonder prefixen als "Categorie:".
  *
  * @return string
  */
@@ -172,76 +44,109 @@ function ncd_archive_title() {
 	if ( is_category() ) {
 		return single_cat_title( '', false );
 	}
+
 	if ( is_tag() ) {
 		return single_tag_title( '', false );
 	}
+
 	if ( is_author() ) {
 		return get_the_author();
 	}
+
 	if ( is_year() ) {
 		return get_the_date( 'Y' );
 	}
+
 	if ( is_month() ) {
 		return get_the_date( 'F Y' );
 	}
+
 	if ( is_day() ) {
 		return get_the_date( 'd.m.Y' );
 	}
-	if ( is_post_type_archive() ) {
-		return post_type_archive_title( '', false );
-	}
 
-	return __( 'Archive', 'night-city-dispatch' );
+	return __( 'Archief', 'night-city-dispatch' );
 }
 
 /**
- * Print one filter chip. Active chips get aria-current so screen readers know
- * which archive is being viewed.
+ * Soort archief dat getoond wordt.
  *
- * @param string $label  Visible label.
- * @param string $url    Link target.
- * @param int    $count  Optional post count.
- * @param bool   $active Whether this chip matches the current archive.
+ * @return string
  */
-function ncd_filter_chip( $label, $url, $count = 0, $active = false ) {
-	printf(
-		'<a class="chip%1$s" href="%2$s"%3$s>%4$s%5$s</a>',
-		$active ? ' is-active' : '',
-		esc_url( $url ),
-		$active ? ' aria-current="page"' : '',
-		esc_html( $label ),
-		$count ? '<span class="chip__count">' . esc_html( number_format_i18n( $count ) ) . '</span>' : ''
+function ncd_archive_label() {
+	if ( is_category() ) {
+		return __( 'Categorie', 'night-city-dispatch' );
+	}
+
+	if ( is_tag() ) {
+		return __( 'Tag', 'night-city-dispatch' );
+	}
+
+	if ( is_author() ) {
+		return __( 'Auteur', 'night-city-dispatch' );
+	}
+
+	if ( is_search() ) {
+		return __( 'Zoeken', 'night-city-dispatch' );
+	}
+
+	return __( 'Archief', 'night-city-dispatch' );
+}
+
+/**
+ * Paginanummers onder een overzicht.
+ */
+function ncd_pagination() {
+	the_posts_pagination(
+		array(
+			'mid_size'  => 1,
+			'prev_text' => __( 'Vorige', 'night-city-dispatch' ),
+			'next_text' => __( 'Volgende', 'night-city-dispatch' ),
+		)
 	);
 }
 
 /**
- * Filter controls shown on archive, search and blog pages.
+ * Een enkele filterlink. De actieve link krijgt een eigen class.
  *
- * The chips are real links to category, tag and author archives, so filtering
- * works without JavaScript and every view has its own URL.
+ * @param string $label  Tekst van de link.
+ * @param string $url    Link naar het archief.
+ * @param bool   $active Staat deze link al open?
+ */
+function ncd_filter_link( $label, $url, $active = false ) {
+	printf(
+		'<a class="filter-link%1$s" href="%2$s"%3$s>%4$s</a>',
+		$active ? ' is-active' : '',
+		esc_url( $url ),
+		$active ? ' aria-current="page"' : '',
+		esc_html( $label )
+	);
+}
+
+/**
+ * Filterbalk met categorieen, tags en auteurs.
+ *
+ * De links wijzen naar de echte archieven, dus filteren werkt zonder
+ * JavaScript en elke filter heeft een eigen URL.
  */
 function ncd_archive_filters() {
 	$categories = get_categories(
 		array(
 			'hide_empty' => true,
-			'orderby'    => 'count',
-			'order'      => 'DESC',
 		)
 	);
-	$tags       = get_tags(
+
+	$tags = get_tags(
 		array(
 			'hide_empty' => true,
-			'orderby'    => 'count',
-			'order'      => 'DESC',
 			'number'     => 10,
 		)
 	);
-	$authors    = get_users(
+
+	$authors = get_users(
 		array(
 			'has_published_posts' => array( 'post' ),
-			'orderby'             => 'post_count',
-			'order'               => 'DESC',
-			'number'              => 6,
+			'number'              => 5,
 		)
 	);
 
@@ -249,61 +154,60 @@ function ncd_archive_filters() {
 		return;
 	}
 	?>
-	<section class="filters" aria-label="<?php esc_attr_e( 'Filter the archive', 'night-city-dispatch' ); ?>">
+	<section class="filters">
 		<div class="container">
-			<?php if ( $categories ) : ?>
-				<div class="filters__row">
-					<span class="filters__label"><?php esc_html_e( 'Sections', 'night-city-dispatch' ); ?></span>
-					<div class="filters__chips">
-						<?php
-						foreach ( $categories as $category ) {
-							ncd_filter_chip(
-								$category->name,
-								get_category_link( $category->term_id ),
-								(int) $category->count,
-								is_category( $category->term_id )
-							);
-						}
-						?>
+			<div class="filters__box">
+				<?php if ( $categories ) : ?>
+					<div class="filters__row">
+						<span class="filters__label"><?php esc_html_e( 'Categorieen', 'night-city-dispatch' ); ?></span>
+						<div class="filters__links">
+							<?php
+							foreach ( $categories as $category ) {
+								ncd_filter_link(
+									$category->name,
+									get_category_link( $category->term_id ),
+									is_category( $category->term_id )
+								);
+							}
+							?>
+						</div>
 					</div>
-				</div>
-			<?php endif; ?>
+				<?php endif; ?>
 
-			<?php if ( $tags ) : ?>
-				<div class="filters__row">
-					<span class="filters__label"><?php esc_html_e( 'Tags', 'night-city-dispatch' ); ?></span>
-					<div class="filters__chips">
-						<?php
-						foreach ( $tags as $tag ) {
-							ncd_filter_chip(
-								$tag->name,
-								get_tag_link( $tag->term_id ),
-								(int) $tag->count,
-								is_tag( $tag->term_id )
-							);
-						}
-						?>
+				<?php if ( $tags ) : ?>
+					<div class="filters__row">
+						<span class="filters__label"><?php esc_html_e( 'Tags', 'night-city-dispatch' ); ?></span>
+						<div class="filters__links">
+							<?php
+							foreach ( $tags as $tag ) {
+								ncd_filter_link(
+									$tag->name,
+									get_tag_link( $tag->term_id ),
+									is_tag( $tag->term_id )
+								);
+							}
+							?>
+						</div>
 					</div>
-				</div>
-			<?php endif; ?>
+				<?php endif; ?>
 
-			<?php if ( $authors ) : ?>
-				<div class="filters__row">
-					<span class="filters__label"><?php esc_html_e( 'Writers', 'night-city-dispatch' ); ?></span>
-					<div class="filters__chips">
-						<?php
-						foreach ( $authors as $author ) {
-							ncd_filter_chip(
-								$author->display_name,
-								get_author_posts_url( $author->ID ),
-								(int) count_user_posts( $author->ID, 'post' ),
-								is_author( $author->ID )
-							);
-						}
-						?>
+				<?php if ( $authors ) : ?>
+					<div class="filters__row">
+						<span class="filters__label"><?php esc_html_e( 'Auteurs', 'night-city-dispatch' ); ?></span>
+						<div class="filters__links">
+							<?php
+							foreach ( $authors as $author ) {
+								ncd_filter_link(
+									$author->display_name,
+									get_author_posts_url( $author->ID ),
+									is_author( $author->ID )
+								);
+							}
+							?>
+						</div>
 					</div>
-				</div>
-			<?php endif; ?>
+				<?php endif; ?>
+			</div>
 		</div>
 	</section>
 	<?php

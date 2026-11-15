@@ -1,6 +1,6 @@
 <?php
 /**
- * Search results.
+ * Zoekresultaten.
  *
  * @package NightCityDispatch
  */
@@ -12,12 +12,12 @@ $ncd_found = (int) $GLOBALS['wp_query']->found_posts;
 
 <header class="page-head">
 	<div class="container">
-		<p class="page-head__meta"><?php echo esc_html( sprintf( '%s / %s', ncd_archive_label(), number_format_i18n( $ncd_found ) ) ); ?></p>
+		<p class="page-head__meta"><?php echo esc_html( sprintf( '%s / %s resultaten', ncd_archive_label(), number_format_i18n( $ncd_found ) ) ); ?></p>
 		<h1 class="page-head__title">
 			<?php
 			printf(
-				/* translators: %s: search query. */
-				esc_html__( 'Results for “%s”', 'night-city-dispatch' ),
+				/* translators: %s: zoekterm. */
+				esc_html__( 'Zoeken naar: %s', 'night-city-dispatch' ),
 				esc_html( get_search_query() )
 			);
 			?>

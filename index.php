@@ -1,6 +1,6 @@
 <?php
 /**
- * Fallback template required by WordPress.
+ * Fallback template dat WordPress verplicht is.
  *
  * @package NightCityDispatch
  */
