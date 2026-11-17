@@ -58,7 +58,7 @@
 	<div class="container footer__bottom">
 		<?php // 中文：版权行：年份（date_i18n）+ 站点名。 ?>
 		<p>&copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?></p>
-		<p><?php esc_html_e( 'Fanproject, niet verbonden aan CD Projekt Red.', 'night-city-dispatch' ); ?></p>
+		<p><?php esc_html_e( 'Oefenproject WordPress Custom 1.', 'night-city-dispatch' ); ?></p>
 	</div>
 </footer>
 
