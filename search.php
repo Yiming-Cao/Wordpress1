@@ -2,11 +2,14 @@
 /**
  * Zoekresultaten.
  *
+ * 中文：search.php 是搜索结果页，网址是 /?s=关键词。WordPress 自己负责搜索，这里只负责显示。
+ *
  * @package NightCityDispatch
  */
 
 get_header();
 
+// 中文：搜索一共找到多少条结果，和归档页一样从主查询里读。
 $ncd_found = (int) $GLOBALS['wp_query']->found_posts;
 ?>
 

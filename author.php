@@ -2,11 +2,14 @@
 /**
  * Auteurspagina: profiel en de berichten van deze auteur.
  *
+ * 中文：author.php 是作者页（/author/名字/）：上半显示头像和文章数，下面是他写的文章。
+ *
  * @package NightCityDispatch
  */
 
 get_header();
 
+// 中文：get_queried_object() 拿到当前作者对象；count_user_posts() 数他发表了几篇。
 $ncd_author = get_queried_object();
 $ncd_count  = (int) count_user_posts( $ncd_author->ID, 'post' );
 ?>

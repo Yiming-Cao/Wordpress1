@@ -5,6 +5,9 @@
  * Hier staan de theme supports, de menu's, de image sizes en het laden van
  * de stylesheet en het script.
  *
+ * 中文：这个文件不输出页面，只做「设置」和「挂载」。注册主题支持的功能、
+ * 菜单位置、图片尺寸，并用 wp_enqueue 加载 CSS 和脚本。WordPress 会自动加载 functions.php。
+ *
  * @package NightCityDispatch
  */
 
@@ -29,6 +32,7 @@ function ncd_setup() {
 		array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' )
 	);
 
+	// 中文：注册两个菜单位置 —— primary 给顶部菜单，footer 给底部。之后在后台「外观 → 菜单」里把菜单分配过去。
 	// Twee plekken waar een menu kan staan: het hoofdmenu en de footer.
 	register_nav_menus(
 		array(
@@ -37,6 +41,7 @@ function ncd_setup() {
 		)
 	);
 
+	// 中文：定义两个自己的图片尺寸：卡片 720x450，大图 1200x675。最后那个 true 表示「裁切成这个比例」。
 	// Twee formaten: een brede voor de hero en een kleinere voor de kaarten.
 	add_image_size( 'ncd-card', 720, 450, true );
 	add_image_size( 'ncd-hero', 1200, 675, true );
@@ -47,6 +52,8 @@ add_action( 'after_setup_theme', 'ncd_setup' );
  * De stylesheet en het script laden.
  */
 function ncd_assets() {
+	// 中文：wp_enqueue_style / wp_enqueue_script 是 WordPress 官方加载 CSS 和 JS 的方式（不能直接写 <link>）。
+	// 中文：wp_enqueue_script 最后一个参数 true = 脚本放到页面底部；版本号用来让浏览器换缓存。
 	// De versie uit style.css zorgt dat de browser na een update een nieuwe file ophaalt.
 	$version = wp_get_theme()->get( 'Version' );
 	$uri     = get_template_directory_uri();
@@ -81,6 +88,8 @@ function ncd_menu_fallback() {
  * @param WP_Query $query De query die WordPress gaat uitvoeren.
  */
 function ncd_archive_query( $query ) {
+	// 中文：pre_get_posts 在 WordPress 真正查数据库之前触发，可以改查询条件。
+	// 中文：这里只改主查询（后台的查询不动），分类页和搜索页每页 6 篇。
 	// Alleen de hoofdquery aanpassen. Queries in het dashboard laten we met rust.
 	if ( is_admin() || ! $query->is_main_query() ) {
 		return;
@@ -99,6 +108,7 @@ add_action( 'pre_get_posts', 'ncd_archive_query' );
  * @return int
  */
 function ncd_excerpt_length() {
+	// 中文：excerpt_length 过滤器改摘要长度，24 个词大约三行，卡片高度就能对齐。
 	// Ongeveer drie regels tekst, zodat de kaarten even hoog blijven.
 	return 24;
 }

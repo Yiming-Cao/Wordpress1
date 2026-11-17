@@ -2,6 +2,9 @@
 /**
  * Kleine hulpfuncties die in meerdere templates gebruikt worden.
  *
+ * 中文：这里放「好几个模板都会用到」的小函数，避免在每个模板重复写同样的 HTML。
+ * functions.php 最后 require 这个文件，所以全站都能调用这些 ncd_ 开头的函数。
+ *
  * @package NightCityDispatch
  */
 
@@ -20,6 +23,7 @@ function ncd_post_meta( $post_id = 0 ) {
 
 	echo '<div class="meta">';
 
+	// 中文：输出日期（用 <time> 标签，机器也读得懂）+ 作者的名字和链接。
 	// De datum in een time-element: dat is goed voor schermlezers en zoekmachines.
 	printf(
 		'<time class="meta__item" datetime="%1$s">%2$s</time>',
@@ -38,6 +42,8 @@ function ncd_post_meta( $post_id = 0 ) {
 
 /**
  * Titel van het huidige archief, zonder prefixen als "Categorie:".
+ *
+ * 中文：WordPress 默认会输出「Categorie: Nieuws」，这里只留名字，标题比较干净。
  *
  * @return string
  */
@@ -72,6 +78,8 @@ function ncd_archive_title() {
 /**
  * Soort archief dat getoond wordt.
  *
+ * 中文：返回「这是哪种页面」：分类 / 标签 / 作者 / 搜索，用来显示在上方的小字。
+ *
  * @return string
  */
 function ncd_archive_label() {
@@ -98,6 +106,7 @@ function ncd_archive_label() {
  * Paginanummers onder een overzicht.
  */
 function ncd_pagination() {
+	// 中文：the_posts_pagination() 自动生成 1 2 3 … 的页码，不用自己算。
 	// Eén paginanummer links en rechts van de huidige pagina is genoeg.
 	the_posts_pagination(
 		array(
@@ -116,6 +125,7 @@ function ncd_pagination() {
  * @param bool   $active Staat deze link al open?
  */
 function ncd_filter_link( $label, $url, $active = false ) {
+	// 中文：用 printf 拼 HTML：%1$s 额外 class、%2$s 网址、%3$s aria-current、%4$s 文字。
 	// %1$s is de extra class, %2$s de URL, %3$s aria-current en %4$s de tekst.
 	printf(
 		'<a class="filter-link%1$s" href="%2$s"%3$s>%4$s</a>',
@@ -129,10 +139,14 @@ function ncd_filter_link( $label, $url, $active = false ) {
 /**
  * Filterbalk met categorieen, tags en auteurs.
  *
+ * 中文：过滤条不需要 JavaScript —— 每个链接都是真实的归档网址（/category/x/），
+ * 點下去就是換一個 WordPress 頁面，所以能過濾、也能分享網址。
+ *
  * De links wijzen naar de echte archieven, dus filteren werkt zonder
  * JavaScript en elke filter heeft een eigen URL.
  */
 function ncd_archive_filters() {
+	// 中文：分别取分类、标签、有发文的作者，再一行一行输出成过滤条。
 	// Eerst de categorieen, daarna de tags en de auteurs ophalen.
 	$categories = get_categories(
 		array(

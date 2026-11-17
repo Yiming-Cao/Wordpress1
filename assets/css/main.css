@@ -4,6 +4,9 @@
  * Eenvoudige opzet: witte vlakken met een grijze rand, een blauwe streep als
  * accent en systeemletters. Geen webfonts en geen effecten.
  *
+ * 中文：整个主题只有这一个样式表。做法很朴素：白底卡片 + 1px 灰边 + 一条蓝色细边，
+ * 字体用系统自带（不下载 webfont），颜色统一写在下面的 :root 变量里，改一处全站生效。
+ *
  * Inhoud
  *  1. Variabelen
  *  2. Basis
@@ -22,6 +25,7 @@
 
 /* 1. Variabelen
  * -------------------------------------------------------------- */
+/* 中文：CSS 变量（颜色、圆角、字体）。想换主色只改 --accent 这一行就够了。 */
 :root {
 	--bg: #f2f3f5;
 	--surface: #ffffff;
@@ -128,6 +132,7 @@ p {
 
 /* 4. Header en menu
  * -------------------------------------------------------------- */
+/* 中文：顶部：白底 + 3px 蓝色下边框；左边站点名，右边菜单和搜索框。 */
 .site-header {
 	background: var(--surface);
 	border-bottom: 3px solid var(--accent);
@@ -380,6 +385,7 @@ a.meta__item:hover {
 
 /* 7. Kaarten en roosters
  * -------------------------------------------------------------- */
+/* 中文：卡片和网格：白底、1px 灰边、顶部 3px 蓝边；桌面一排 3 张。 */
 .post-grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -483,6 +489,7 @@ a.meta__item:hover {
 
 /* 8. Paginakop en filters
  * -------------------------------------------------------------- */
+/* 中文：页面标题区和过滤条：分类 / 标签 / 作者三行，当前那一项是蓝底白字（.is-active）。 */
 .page-head {
 	padding: 28px 0;
 	background: var(--surface);
@@ -1134,6 +1141,7 @@ a.meta__item:hover {
 
 /* 13. Responsive
  * -------------------------------------------------------------- */
+/* 中文：响应式：900px 以下网格变 2 列，820px 以下菜单收成按钮，600px 以下全部单列。 */
 @media (max-width: 900px) {
 	.hero__lead {
 		grid-template-columns: 1fr;

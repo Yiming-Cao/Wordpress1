@@ -2,6 +2,8 @@
 /**
  * Melding als er geen berichten gevonden zijn.
  *
+ * 中文：归档页/搜索页一篇都没有时显示这个提示，同时给一个搜索框，别让访客走死路。
+ *
  * @package NightCityDispatch
  */
 ?>

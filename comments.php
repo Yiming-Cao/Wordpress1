@@ -2,6 +2,9 @@
 /**
  * Comments: lijst met reacties en het formulier.
  *
+ * 中文：评论区 = 评论列表 + 发表评论的表单。被 comments_template() 调用，
+ * 所以 single.php 和 page.php 共用同一份代码。
+ *
  * Wordt geladen binnen de container van single.php of page.php.
  *
  * @package NightCityDispatch
@@ -45,6 +48,7 @@ if ( post_password_required() ) {
 	<?php endif; ?>
 
 	<?php
+	// 中文：comment_form() 是 WordPress 自带的表单，这里只改标题和按钮文字。
 	comment_form(
 		array(
 			'title_reply'    => __( 'Reageer', 'night-city-dispatch' ),

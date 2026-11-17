@@ -2,6 +2,9 @@
 /**
  * Zoekformulier.
  *
+ * 中文：搜索表单。name="s" 是 WordPress 固定的搜索参数（网址变成 /?s=...），
+ * 不能改成别的名字。get_search_form() 会调用这个文件，所以全站只有一个搜索框。
+ *
  * @package NightCityDispatch
  */
 
