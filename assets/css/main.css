@@ -27,14 +27,14 @@
  * -------------------------------------------------------------- */
 /* 中文：CSS 变量（颜色、圆角、字体）。想换主色只改 --accent 这一行就够了。 */
 :root {
-	--bg: #f2f3f5;
-	--surface: #ffffff;
-	--border: #d3d3d3;
-	--text: #222222;
-	--muted: #6b6b6b;
-	--accent: #1d5c96;
-	--accent-dark: #17497a;
-	--accent-light: #e8f0f8;
+	--bg: #0d0b12;
+	--surface: #17141f;
+	--border: #2f2940;
+	--text: #eceaf2;
+	--muted: #9b95ab;
+	--accent: #8a4bd6;
+	--accent-dark: #6d3ab0;
+	--accent-light: #241a34;
 	--radius: 4px;
 	--font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
@@ -278,7 +278,7 @@ p {
 
 .hero__media {
 	display: block;
-	background: #e6e8eb;
+	background: #221d2e;
 	min-height: 260px;
 }
 
@@ -310,7 +310,7 @@ p {
 
 .hero__kicker:hover {
 	text-decoration: none;
-	background: #dbe8f5;
+	background: var(--accent-light);
 }
 
 .hero__title {
@@ -357,7 +357,7 @@ a.meta__item:hover {
 	min-height: 160px;
 	font-size: 13px;
 	color: var(--muted);
-	background: #e9ebee;
+	background: #221d2e;
 }
 
 .section {
@@ -404,7 +404,7 @@ a.meta__item:hover {
 
 .card__media {
 	display: block;
-	background: #e6e8eb;
+	background: #221d2e;
 }
 
 .card__media img {
@@ -614,7 +614,7 @@ a.meta__item:hover {
 
 .entry__kicker:hover {
 	text-decoration: none;
-	background: #dbe8f5;
+	background: var(--accent-light);
 }
 
 .entry__title {
@@ -667,8 +667,8 @@ a.meta__item:hover {
 .prose blockquote {
 	margin: 1.4em 0;
 	padding: 12px 18px;
-	color: #333333;
-	background: #f6f7f9;
+	color: var(--text);
+	background: #1e1929;
 	border-left: 4px solid var(--accent);
 }
 
@@ -679,7 +679,7 @@ a.meta__item:hover {
 .prose code {
 	padding: 2px 5px;
 	font-size: 0.92em;
-	background: #eef0f2;
+	background: var(--accent-light);
 	border-radius: 3px;
 }
 
@@ -688,8 +688,8 @@ a.meta__item:hover {
 	padding: 14px 16px;
 	overflow-x: auto;
 	font-size: 13px;
-	color: #eeeeee;
-	background: #2b2b2b;
+	color: #d8d2e6;
+	background: #08070d;
 	border-radius: var(--radius);
 }
 
@@ -725,7 +725,7 @@ a.meta__item:hover {
 }
 
 .prose th {
-	background: #f6f7f9;
+	background: #1e1929;
 }
 
 .prose hr {
@@ -1058,7 +1058,7 @@ a.meta__item:hover {
 	font-size: 72px;
 	font-weight: 700;
 	line-height: 1;
-	color: #ccd8e4;
+	color: #3a2e55;
 }
 
 .lost__title {
@@ -1081,8 +1081,8 @@ a.meta__item:hover {
 .site-footer {
 	margin-top: 40px;
 	padding: 36px 0 20px;
-	color: #c5cacf;
-	background: #2b2b2b;
+	color: #b9b3c7;
+	background: #08070d;
 }
 
 .footer__grid {
@@ -1100,7 +1100,7 @@ a.meta__item:hover {
 .footer__text {
 	margin: 0;
 	font-size: 14px;
-	color: #a8aeb4;
+	color: #8f8a9e;
 }
 
 .footer__list {
@@ -1115,7 +1115,7 @@ a.meta__item:hover {
 }
 
 .footer__list a {
-	color: #c5cacf;
+	color: #b9b3c7;
 }
 
 .footer__list a:hover {
@@ -1131,8 +1131,8 @@ a.meta__item:hover {
 	margin-top: 28px;
 	padding-top: 16px;
 	font-size: 13px;
-	color: #979da3;
-	border-top: 1px solid #3d4247;
+	color: #7b7590;
+	border-top: 1px solid #241f33;
 }
 
 .footer__bottom p {
@@ -1255,4 +1255,15 @@ a.meta__item:hover {
 	.lost__code {
 		font-size: 56px;
 	}
+}
+
+/* Native formulier-elementen en tekstselectie in dezelfde kleur. */
+input[type="checkbox"],
+input[type="radio"] {
+	accent-color: var(--accent);
+}
+
+::selection {
+	color: #ffffff;
+	background: var(--accent-dark);
 }
