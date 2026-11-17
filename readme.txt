@@ -11,7 +11,7 @@ Een simpel klassiek WordPress thema voor een fanmagazine over Night City.
 
 == Beschrijving ==
 
-Night City Dispatch is een klassiek thema met een witte header, een voorpagina met een uitgelicht bericht, een raster met kaarten en een footer met drie kolommen. Alles is wit met een grijze rand en een blauwe accentkleur. Er worden geen webfonts of externe bestanden geladen.
+Night City Dispatch is een klassiek thema met een donkere header, een voorpagina met een uitgelicht bericht, een raster met kaarten en een footer met drie kolommen. Alles is donker met een paarse accentkleur. Er worden geen webfonts of externe bestanden geladen.
 
 Templates: index.php, front-page.php, home.php, single.php, page.php, archive.php, author.php, search.php en 404.php. Daarbij horen header.php, footer.php, comments.php, searchform.php, inc/template-tags.php en de map template-parts/.
 
